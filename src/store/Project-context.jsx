@@ -3,6 +3,7 @@ import { createContext,useState,useRef,useReducer } from "react";
 import DefaultPage from "../components/DefaultPage";
 import AddProject from '../components/AddProject'
 import Project from '../components/Project'
+import ProjectList from "../components/ProjectList";
 
 const initial_project={
     page_status:"main",
@@ -22,6 +23,41 @@ const initial_project={
         id:Math.random()*100,
         tasks:[]
       },
+      {
+          projectName:"third project",
+          projectDesc:"second project description",
+          dueDate:"22-11-2024",
+          id:Math.random()*100,
+          tasks:[]
+        },
+        {
+          projectName:"fourth project",
+          projectDesc:"second project description",
+          dueDate:"22-11-2024",
+          id:Math.random()*100,
+          tasks:[]
+        },
+        {
+          projectName:"fifth project",
+          projectDesc:"second project description",
+          dueDate:"22-11-2024",
+          id:Math.random()*100,
+          tasks:[]
+        },
+        {
+          projectName:"sixth project",
+          projectDesc:"second project description",
+          dueDate:"22-11-2024",
+          id:Math.random()*100,
+          tasks:[]
+        },
+        {
+          projectName:"seventh project",
+          projectDesc:"second project description",
+          dueDate:"22-11-2024",
+          id:Math.random()*100,
+          tasks:[]
+        }      
     ]
   }
 
@@ -36,7 +72,8 @@ const initial_project={
         addProject:()=>{},
         homePage:()=>{},
         deleteProjectHandler:()=>{},
-        projectPage:()=>{}
+        projectPage:()=>{},
+        listProjectPage:()=>{}
     }
   )
 
@@ -55,6 +92,9 @@ const initial_project={
     function projectPage(id){
       setProject(prev=>{return{...prev,page_status:+id}})
     }
+    function listProjectPage() {
+      setProject(prev=>{return{...prev,page_status:"list"}})
+    }
   
     let mainContent;   
     switch (project.page_status) {
@@ -63,6 +103,9 @@ const initial_project={
         break;
       case "main":
         mainContent=<DefaultPage/>
+        break;
+      case "list":
+        mainContent=<ProjectList/>
         break;    
       default:                      
         mainContent=<Project/>
@@ -125,7 +168,8 @@ const initial_project={
       addProjectHandler:addProjectHandler,
       deleteProjectHandler:deleteProjectHandler,
       homePage:homePage,
-      projectPage:projectPage
+      projectPage:projectPage,
+      listProjectPage:listProjectPage
     }
 
     return(
@@ -151,3 +195,39 @@ const initial_project={
   //   // console.log(projectId);
   //   console.log(updatedProject);
   // }
+
+  // {
+  //   projectName:"third project",
+  //   projectDesc:"second project description",
+  //   dueDate:"22-11-2024",
+  //   id:Math.random()*100,
+  //   tasks:[]
+  // },
+  // {
+  //   projectName:"fourth project",
+  //   projectDesc:"second project description",
+  //   dueDate:"22-11-2024",
+  //   id:Math.random()*100,
+  //   tasks:[]
+  // },
+  // {
+  //   projectName:"fifth project",
+  //   projectDesc:"second project description",
+  //   dueDate:"22-11-2024",
+  //   id:Math.random()*100,
+  //   tasks:[]
+  // },
+  // {
+  //   projectName:"sixth project",
+  //   projectDesc:"second project description",
+  //   dueDate:"22-11-2024",
+  //   id:Math.random()*100,
+  //   tasks:[]
+  // },
+  // {
+  //   projectName:"seventh project",
+  //   projectDesc:"second project description",
+  //   dueDate:"22-11-2024",
+  //   id:Math.random()*100,
+  //   tasks:[]
+  // },
