@@ -5,7 +5,7 @@ export default function ProjectTab() {
     const {homePage,listProjectPage,projectPage,initialProject}=useContext(ProjectContext);
     const latestProject = [...initialProject.projects];
     latestProject.reverse()
-    console.log(latestProject);
+    // console.log(latestProject);
     return <div className="w-64 p-4 text-center bg-slate-500">
         <h2 onClick={homePage} className="cursor-pointer text-slate-300 text-3xl font-bold mb-10"><u>PM-V2</u></h2>
         <h2 className="text-2xl font-bold mt-10 mb-3"><u>Latest Project</u></h2>
