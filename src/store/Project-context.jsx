@@ -4,62 +4,9 @@ import DefaultPage from "../components/DefaultPage";
 import AddProject from '../components/AddProject'
 import Project from '../components/Project'
 import ProjectList from "../components/ProjectList";
+import { INITIAL_PROJECT } from "../components/initialProject";
 
-const initial_project={
-    page_status:"main",
-    projects:
-    [
-      {
-        projectName:"first project",
-        projectDesc:"first project description",
-        dueDate:"12-10-2024",
-        id:Math.random()*100,
-        tasks:[{task:"first task",taskId:Math.random()*1000},{task:"second task",taskId:Math.random()*1000}]
-      },
-      {
-        projectName:"second project",
-        projectDesc:"second project description",
-        dueDate:"22-11-2024",
-        id:Math.random()*100,
-        tasks:[]
-      },
-      {
-          projectName:"third project",
-          projectDesc:"second project description",
-          dueDate:"22-11-2024",
-          id:Math.random()*100,
-          tasks:[]
-        },
-        {
-          projectName:"fourth project",
-          projectDesc:"second project description",
-          dueDate:"22-11-2024",
-          id:Math.random()*100,
-          tasks:[]
-        },
-        {
-          projectName:"fifth project",
-          projectDesc:"second project description",
-          dueDate:"22-11-2024",
-          id:Math.random()*100,
-          tasks:[]
-        },
-        {
-          projectName:"sixth project",
-          projectDesc:"second project description",
-          dueDate:"22-11-2024",
-          id:Math.random()*100,
-          tasks:[]
-        },
-        {
-          projectName:"seventh project",
-          projectDesc:"second project description",
-          dueDate:"22-11-2024",
-          id:Math.random()*100,
-          tasks:[]
-        }      
-    ]
-  }
+const initial_project= INITIAL_PROJECT
 
   export const ProjectContext = createContext(
     {   

@@ -3,13 +3,15 @@ import ColumnFilter from "./ColumnFilter"
 export const COLUMNS = [
     {
         Header:'Project Name',
-        Footer:'Project Name',
-        accessor:'projectName',        
+        // Footer:'Project Name',
+        accessor:'projectName',
+        disableSortBy:true       
     },
     {
         Header:'Due date',
-        Footer:'Due date',
-        accessor:'dueDate',        
+        // Footer:'Due date',
+        accessor:'dueDate',
+        Filter:""     
         // disableFilters:true,
         // disableGlobalFilter:true
     }
