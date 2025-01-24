@@ -5,13 +5,15 @@ export const COLUMNS = [
         Header:'Project Name',
         // Footer:'Project Name',
         accessor:'projectName',
-        disableSortBy:true       
+        // disableSortBy:true,
+        sortDescFirst:true
     },
     {
         Header:'Due date',
         // Footer:'Due date',
         accessor:'dueDate',
-        Filter:""     
+        // Filter:"",
+        sortDescFirst:true  
         // disableFilters:true,
         // disableGlobalFilter:true
     }

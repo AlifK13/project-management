@@ -8,7 +8,7 @@ import ColumnFilter from "./ColumnFilter"
 
 export default function ProjectList() {
     const columns = useMemo(()=>COLUMNS,[]);
-    const {initialProject}=useContext(ProjectContext);
+    const {initialProject,projectPage}=useContext(ProjectContext);
     const data = useMemo(()=>initialProject.projects,[]);
     const defaultColumn = useMemo(()=>{
         return{
@@ -16,12 +16,28 @@ export default function ProjectList() {
         }
     },[]);
 
+    const showButton = (hooks)=>{
+        hooks.visibleColumns.push((col)=>[
+            ...col,
+            {
+                Header:'Show Project',
+                id:'showProject',
+                Cell: ({row}) => <button onClick={()=>projectPage(row.original.id)} className="bg-gray-200 font-bold text-sm p-1 rounded-md border" >Show</button>
+            }
+        ])
+    }
+
     const tableInstance = useTable({
         columns:columns,
         data:data,
         defaultColumn:defaultColumn,
-        initialState:{pageSize:5}
-    },useFilters,useGlobalFilter,useSortBy,usePagination)
+        initialState:{pageSize:5},        
+    }
+    ,useFilters,
+    useGlobalFilter,
+    useSortBy,
+    usePagination,
+    )
     
     const {getTableProps,getTableBodyProps,state,setGlobalFilter,headerGroups,page,previousPage,nextPage,canPreviousPage,canNextPage,gotoPage,pageCount,prepareRow,pageOptions,footerGroups}=tableInstance
     const {globalFilter,pageIndex}=state;    
@@ -33,18 +49,14 @@ export default function ProjectList() {
                 <thead className="bg-slate-400 font-bold text-xl text-slate-800 bg-opacity-90">                                       
                     {headerGroups.map((headerGroup,i)=>{
                         const {key,...restOfTheProps}=headerGroup.getFooterGroupProps()
-                        const aKey =key+"anewKey"                        
+                        const aKey =key+"anewKey"                                               
                         return(
                         <tr key={key} {...restOfTheProps} >                            
-                            {headerGroup.headers.map( col=>(
-                                    <>                                                                                                                     
-                                        {/* {console.log({...col.getHeaderProps(col.getSortByToggleProps())})} */}
+                            {headerGroup.headers.map( col=>
+                            (
+                                    <>                                        
                                         <th key={col.key} colSpan={col.colSpan} role={col.role} title={col.title} className="px-10 py-4 text-m">                                            
-                                            {col.render('Header')}
-                                            {col.Header=="Due date"? 
-                                            <a className="">
-                                                {col.isSorted ? (col.isSortedDesc ? '🔽' : '🔼'):''}
-                                            </a>:''}                                                                                                          
+                                            {col.render('Header')}   
                                         </th>                                                                               
                                     </>                                    
                                 ))
@@ -56,10 +68,11 @@ export default function ProjectList() {
                     {
                         page.map(row=>{
                             prepareRow(row)
+                            // console.log(row)
                             return(                                
                                 <tr key={row.id} className="border-b-2 border-gray-500">                                    
                                     {row.cells.map(cell=>{
-                                        return <td key={cell.id} className="px-6 py-4">{cell.render('Cell')}</td>
+                                        return <td key={cell.id} className="px-6 py-4 cursor-pointer">{cell.render('Cell')}</td>
                                     })}                                                                        
                                 </tr>
                             )
@@ -119,3 +132,7 @@ export default function ProjectList() {
 
 // column filter
 {/* <span className="block">{col.canFilter ?col.render('Filter'):null}</span> */}
+// sortBy
+{/* <span className="">
+    {col.isSorted ? (col.isSortedDesc ? '🔽' : '🔼'):''}
+</span>  */}

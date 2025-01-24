@@ -24,10 +24,16 @@ const initial_project= INITIAL_PROJECT
     }
   )
 
+  const MODAL_STATUS={
+    open:false,
+    modalID:''
+  }
+
   export default function ProjectContextProvider({children}) {
     const [project,setProject]=useState(initial_project);
-    const [openModal,setOpenModal]=useState(false);
+    const [openModal,setOpenModal]=useState(MODAL_STATUS);
     const selectedTask = useRef();
+    const selectedProject =useRef();
     // console.log(project);
 
     function addProject() {
@@ -58,12 +64,16 @@ const initial_project= INITIAL_PROJECT
         mainContent=<Project/>
         break;
     }
-    function openModalHandler(id) {
-      setOpenModal(true);
-      selectedTask.current = id
+    function openModalHandler(id,modalID) {
+      setOpenModal({open:true,modalID});
+      if (modalID=='project') {
+        selectedProject.current=id 
+      }else if(modalID=='task'){
+        selectedTask.current = id
+      }      
     }
     function closeModal() {
-      setOpenModal(false);
+      setOpenModal({open:false,modalID:''});
     }
 
     function addTaskHadler(newTask) {
@@ -73,6 +83,7 @@ const initial_project= INITIAL_PROJECT
       const updatedProject = {...project};
       updatedProject.projects[index].tasks=[...oldTask,newTask];
       setProject(updatedProject);
+
       // console.log(updatedProject);
     }
 
@@ -84,6 +95,7 @@ const initial_project= INITIAL_PROJECT
       const updatedProject = {...project};
       updatedProject.projects[index].tasks= [...updatedTask];
       setProject(updatedProject);
+      setOpenModal({open:false,modalID:''});
       // console.log(updatedTask);
     }
 
@@ -95,11 +107,13 @@ const initial_project= INITIAL_PROJECT
       // console.log(newProject.id);
     }
 
-    function deleteProjectHandler(projectId) {
+    function deleteProjectHandler() {
+      const projectId = selectedProject.current;
       const old_projects=[...project.projects];
       const updated_projects=[...old_projects.filter(p=>p.id !== projectId)];
       const updated_data={page_status:"main",projects:updated_projects}
       setProject(updated_data);
+      setOpenModal({open:false,modalID:''});
       // console.log(updated_data);
     }
 

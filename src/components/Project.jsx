@@ -2,9 +2,8 @@ import Task from "./Task"
 import { useRef,useContext,useState } from "react"
 import { ProjectContext } from "../store/Project-context";
 import TaskInput from "./TaskInput";
-import ProjectModal from "./ProjectModal";
 import MainModal from "./MainModal";
-import TaskModal from "./TaskModal";
+
 
 
 export default function Project() { 
@@ -15,15 +14,15 @@ export default function Project() {
     return(
         <div className="ml-36 mt-28 w-2/3">
             <MainModal>
-                <TaskModal/>
+                {/* <TaskModal/> */}
             </MainModal>
-            <MainModal>
+            {/* <MainModal>
                 <ProjectModal id={id} status="project"/>
-            </MainModal>
+            </MainModal> */}
             
             <div className="flex w-2/3 mb-4">
                 <h1 className="basis-2/3 font-bold text-3xl text-gray-700"><u>{data[0].projectName}</u></h1>
-                <button onClick={openModalHandler} className="bg-slate-700 text-slate-100 hover:bg-slate-100 hover:text-slate-700 basis-1/3 max-w-20 rounded-md px-2 py-0 font-bold ">DELETE</button>
+                <button onClick={()=>openModalHandler(id,'project')} className="bg-slate-700 text-slate-100 hover:bg-slate-100 hover:text-slate-700 basis-1/3 max-w-20 rounded-md px-2 py-0 font-bold ">DELETE</button>
             </div>          
             <p className="font-bold text-gray-600 mb-6">Due date : {data[0].dueDate}</p>
             <p className="w-2/3">{data[0].projectDesc}</p>
