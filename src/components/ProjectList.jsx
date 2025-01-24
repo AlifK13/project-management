@@ -37,6 +37,7 @@ export default function ProjectList() {
     useGlobalFilter,
     useSortBy,
     usePagination,
+    showButton
     )
     
     const {getTableProps,getTableBodyProps,state,setGlobalFilter,headerGroups,page,previousPage,nextPage,canPreviousPage,canNextPage,gotoPage,pageCount,prepareRow,pageOptions,footerGroups}=tableInstance
