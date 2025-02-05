@@ -4,6 +4,7 @@ import { useMemo,useContext } from "react"
 import { ProjectContext } from "../store/Project-context"
 import GlobalFilter from "./GlobalFilter"
 import ColumnFilter from "./ColumnFilter"
+import HomeButton from "./HomeButton"
 
 
 export default function ProjectList() {
@@ -42,11 +43,12 @@ export default function ProjectList() {
     
     const {getTableProps,getTableBodyProps,state,setGlobalFilter,headerGroups,page,previousPage,nextPage,canPreviousPage,canNextPage,gotoPage,pageCount,prepareRow,pageOptions,footerGroups}=tableInstance
     const {globalFilter,pageIndex}=state;    
-    return(
+    return(                    
         <div className="mx-auto my-20 text-center">
-            <h1 className="font-bold text-4xl mb-4">Project List</h1>
+            
+            <h1 className="font-bold text-4xl max-[766px]:text-sm mb-4">Project List</h1>
             <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />          
-            <table className="mt-5 table-auto" {...getTableProps}>
+            <table className="mt-5 mx-auto table-auto" {...getTableProps}>
                 <thead className="bg-slate-400 font-bold text-xl text-slate-800 bg-opacity-90">                                       
                     {headerGroups.map((headerGroup,i)=>{
                         const {key,...restOfTheProps}=headerGroup.getFooterGroupProps()
@@ -56,7 +58,7 @@ export default function ProjectList() {
                             {headerGroup.headers.map( col=>
                             (
                                     <>                                        
-                                        <th key={col.key} colSpan={col.colSpan} role={col.role} title={col.title} className="px-10 py-4 text-m">                                            
+                                        <th key={col.key} colSpan={col.colSpan} role={col.role} title={col.title} className="px-10 py-4 max-[420px]:py-2 text-m">                                            
                                             {col.render('Header')}   
                                         </th>                                                                               
                                     </>                                    
@@ -102,7 +104,7 @@ export default function ProjectList() {
                 <button className="bg-gray-200 font-bold text-sm p-1 rounded-md border disabled:bg-gray-500 border-gray-400" disabled={!canNextPage} onClick={()=>nextPage()}>Next</button>
                 <button className="bg-gray-200 font-bold text-sm p-1 rounded-md border disabled:bg-gray-500 border-gray-400" onClick={()=>{gotoPage(pageCount-1)}} disabled={!canNextPage}>{'>>'}</button>
             </div>
-        </div>
+        </div>                
     )
 }
 

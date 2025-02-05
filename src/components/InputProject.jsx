@@ -14,9 +14,9 @@ const InputProject = forwardRef(function InputProject({inType,label,type,err},re
 
     let input="";    
     if (inType) {
-        input=<input ref={ref} className="border rounded-md w-1/3 py-2 px-3" type={type} name="title" />
+        input=<input ref={ref} className="border rounded-md lg:w-1/3 w-5/6 py-2 px-3" type={type} name="title" />
     }else 
-        input=<textarea ref={ref} className="border rounded-md w-1/3 py-2 px-3" name="desc" rows="5" id=""></textarea>                    
+        input=<textarea ref={ref} className="border rounded-md lg:w-1/3 w-5/6 py-2 px-3" name="desc" rows="5" id=""></textarea>                    
     return(
         <div className="my-3">
             <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="title">{label} :</label>
